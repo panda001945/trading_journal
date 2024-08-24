@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Trade Details{% endblock %}
+
+{% block content %}
+<h1>Trade Details</h1>
+<p><strong>Date:</strong> {{ trade.trade_date }}</p>
+<p><strong>Symbol:</strong> {{ trade.symbol }}</p>
+<p><strong>Direction:</strong> {{ trade.direction }}</p>
+<p><strong>Position Size:</strong> {{ trade.position_size }}</p>
+<p><strong>Entry Price:</strong> {{ trade.entry_price }}</p>
+<p><strong>Exit Price:</strong> {{ trade.exit_price }}</p>
+<p><strong>Stop Loss:</strong> {{ trade.stop_loss }}</p>
+<p><strong>Take Profit:</strong> {{ trade.take_profit }}</p>
+<p><strong>Commission:</strong> {{ trade.commission }}</p>
+<p><strong>Trade Duration:</strong> {{ trade.trade_duration }} minutes</p>
+<p><strong>Strategy Description:</strong> {{ trade.strategy_description }}</p>
+<p><strong>Entry Signal:</strong> {{ trade.entry_signal }}</p>
+<p><strong>Exit Signal:</strong> {{ trade.exit_signal }}</p>
+
+{% if trade.pre_trade_chart %}
+<p><strong>Pre-Trade Chart:</strong></p>
+<img src="{{ url_for('static', filename='uploads/' ~ trade.pre_trade_chart) }}" alt="Pre-Trade Chart"><br>
+{% endif %}
+
+{% if trade.post_trade_chart %}
+<p><strong>Post-Trade Chart:</strong></p>
+<img src="{{ url_for('static', filename='uploads/' ~ trade.post_trade_chart) }}" alt="Post-Trade Chart"><br>
+{% endif %}
+
+{% if emotions %}
+<h2>Trade Emotions</h2>
+<p><strong>Pre-Trade Emotion:</strong> {{ emotions.pre_trade_emotion }}</p>
+<p><strong>During Trade Emotion:</strong> {{ emotions.during_trade_emotion }}</p>
+<p><strong>Post-Trade Emotion:</strong> {{ emotions.post_trade_emotion }}</p>
+{% endif %}
+
+{% if review %}
+<h2>Trade Review</h2>
+<p><strong>Mistakes:</strong> {{ review.mistakes }}</p>
+<p><strong>What Went Well:</strong> {{ review.what_went_well }}</p>
+<p><strong>Lessons Learned:</strong> {{ review.lessons_learned }}</p>
+<p><strong>Possible Improvements:</strong> {{ review.possible_improvements }}</p>
+{% endif %}
+
+<a href="{{ url_for('routes.index') }}">Back to Trades</a>
+{% endblock %}
